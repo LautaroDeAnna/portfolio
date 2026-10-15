@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lautaro | Desarrollador Multiplataforma (DAM) & 3D Generalist</title>
+  
+  <!-- Meta SEO -->
+  <meta name="description" content="Portfolio de Lautaro: Desarrollador Multiplataforma (DAM), programador Python y generalista 3D en Blender. Lógica sólida, software práctico y diseño 3D.">
+  <meta name="keywords" content="Lautaro, DAM, Desarrollador Multiplataforma, Python, Java, Blender, 3D Generalist, Portfolio, SQL">
+  <meta name="author" content="Lautaro">
+
+  <!-- Favicon (Opcional: reemplaza href con tu favicon propio si lo deseas) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Tipografía Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Estilos Personalizados -->
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-sans antialiased selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col bg-radial-gradient">
+
+  <!-- ====================================================================
+       1. NAVEGACIÓN SUPERIOR (STICKY NAVBAR)
+       ==================================================================== -->
+  <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-zinc-950/80 border-b border-zinc-800/80 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Logotipo / Monograma -->
+      <a href="#" class="group flex items-center gap-2.5 font-semibold text-lg tracking-tight text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-md py-1">
+        <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-white font-mono text-base font-bold shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+          L
+        </span>
+        <span class="tracking-normal font-bold">Lautaro<span class="text-indigo-400">.dev</span></span>
+      </a>
+
+      <!-- Menú de escritorio -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-zinc-400">
+        <a href="#proyectos" class="hover:text-zinc-100 transition-colors">Proyectos</a>
+        <a href="#lab" class="hover:text-zinc-100 transition-colors">Lab Académico</a>
+        <a href="#stack" class="hover:text-zinc-100 transition-colors">Habilidades</a>
+        <a href="#contacto" class="hover:text-zinc-100 transition-colors">Contacto</a>
+      </nav>
+
+      <!-- Botón CTA rápido (Escritorio) -->
+      <div class="hidden md:flex items-center gap-3">
+        <!-- EDITAR: Enlace a tu repositorio o perfil de GitHub -->
+        <a href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer" 
+           class="p-2 rounded-lg text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900 border border-transparent hover:border-zinc-800 transition-all" 
+           title="Ver mi GitHub">
+          <i data-lucide="github" class="w-5 h-5"></i>
+        </a>
+        <a href="#contacto" 
+           class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-700/80 hover:border-indigo-500/50 transition-all">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Disponible</span>
+        </a>
+      </div>
+
+      <!-- Botón menú hamburguesa (Móvil) -->
+      <button id="mobileMenuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" 
+              class="md:hidden p-2 rounded-lg text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Menú desplegable Móvil -->
+    <div id="mobileMenu" class="hidden md:hidden px-4 pt-2 pb-5 bg-zinc-950/95 border-b border-zinc-800/80 backdrop-blur-lg">
+      <nav class="flex flex-col gap-3 text-sm font-medium text-zinc-300">
+        <a href="#proyectos" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-zinc-900 hover:text-white">Proyectos</a>
+        <a href="#lab" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-zinc-900 hover:text-white">Lab Académico</a>
+        <a href="#stack" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-zinc-900 hover:text-white">Habilidades</a>
+        <a href="#contacto" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-zinc-900 hover:text-white">Contacto</a>
+      </nav>
+      <!-- EDITAR: Enlace a tu GitHub para móvil -->
+      <div class="mt-4 pt-3 border-t border-zinc-800 flex justify-between items-center px-2">
+        <span class="text-xs text-zinc-400 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Abierto a proyectos
+        </span>
+        <a href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer" class="text-xs text-indigo-400 font-semibold flex items-center gap-1">
+          GitHub <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====================================================================
+       MAIN CONTENT
+       ==================================================================== -->
+  <main class="flex-grow">
+
+    <!-- ====================================================================
+         2. HERO SECTION
+         ==================================================================== -->
+    <section class="relative pt-20 pb-20 sm:pt-28 sm:pb-28 overflow-hidden">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-3xl">
+          <!-- Status pill -->
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/90 border border-zinc-800 text-xs font-medium text-zinc-300 mb-6 shadow-inner">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span>Disponible para proyectos & empleo</span>
+          </div>
+
+          <!-- Nombre & Título -->
+          <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-4">
+            Hola, soy <span class="bg-gradient-to-r from-white via-zinc-200 to-indigo-400 bg-clip-text text-transparent">Lautaro</span>
+          </h1>
+
+          <!-- Rol destacado -->
+          <h2 class="text-xl sm:text-2xl font-medium text-indigo-400 mb-6 flex flex-wrap items-center gap-2">
+            <span>Desarrollador Multiplataforma (DAM)</span>
+            <span class="text-zinc-600 hidden sm:inline">•</span>
+            <span class="text-zinc-300">Python & 3D Generalist</span>
+          </h2>
+
+          <!-- Pitch conciso -->
+          <p class="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-2xl mb-10">
+            Desarrollo software enfocado en lógica sólida y soluciones prácticas, combinando programación con modelado 3D en Blender.
+          </p>
+
+          <!-- Botones CTA -->
+          <div class="flex flex-wrap items-center gap-3.5">
+            <!-- CTA 1: Ver Proyectos -->
+            <a href="#proyectos" 
+               class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-all shadow-lg shadow-indigo-600/20 active:scale-95">
+              <i data-lucide="folder-code" class="w-4 h-4"></i>
+              <span>Ver Proyectos</span>
+            </a>
+
+            <!-- CTA 2: GitHub (EDITAR: Reemplaza con tu URL) -->
+            <a href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-zinc-900/90 hover:bg-zinc-800 text-zinc-200 hover:text-white font-medium text-sm border border-zinc-800 hover:border-zinc-700 transition-all active:scale-95">
+              <i data-lucide="github" class="w-4 h-4"></i>
+              <span>GitHub</span>
+            </a>
+
+            <!-- CTA 3: Contacto -->
+            <a href="#contacto" 
+               class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-transparent hover:bg-zinc-900/60 text-zinc-300 hover:text-white font-medium text-sm border border-transparent hover:border-zinc-800 transition-all active:scale-95">
+              <i data-lucide="mail" class="w-4 h-4"></i>
+              <span>Contacto</span>
+            </a>
+          </div>
+
+          <!-- Métricas / Resumen rápido -->
+          <div class="mt-14 pt-8 border-t border-zinc-900 grid grid-cols-2 sm:grid-cols-3 gap-6 text-left">
+            <div>
+              <p class="text-2xl font-bold font-mono text-white">DAM</p>
+              <p class="text-xs text-zinc-500 uppercase tracking-wider mt-0.5">Especialización</p>
+            </div>
+            <div>
+              <p class="text-2xl font-bold font-mono text-indigo-400">Python & Java</p>
+              <p class="text-xs text-zinc-500 uppercase tracking-wider mt-0.5">Core Backend</p>
+            </div>
+            <div>
+              <p class="text-2xl font-bold font-mono text-zinc-300">Blender 4.x</p>
+              <p class="text-xs text-zinc-500 uppercase tracking-wider mt-0.5">Modelado & Renders</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         3. FILTRO Y GALERÍA DE PROYECTOS
+         ==================================================================== -->
+    <section id="proyectos" class="py-20 border-t border-zinc-900">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Encabezado de sección con filtros -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            <div class="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-indigo-400 uppercase tracking-widest mb-2">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+              <span>Portfolio Seleccionado</span>
+            </div>
+            <h2 class="text-3xl font-extrabold text-white tracking-tight">Proyectos Destacados</h2>
+            <p class="text-zinc-400 text-sm mt-1 max-w-lg">
+              Soluciones de software estructuradas y creación de entornos tridimensionales.
+            </p>
+          </div>
+
+          <!-- Filtros Interactivos (Vanilla JS) -->
+          <div class="flex items-center p-1 bg-zinc-900/90 border border-zinc-800 rounded-xl max-w-fit">
+            <button type="button" data-filter="all" 
+                    class="filter-btn px-4 py-2 text-xs font-semibold rounded-lg transition-all bg-indigo-600 text-white shadow-sm shadow-indigo-500/20" 
+                    aria-selected="true">
+              Todos
+            </button>
+            <button type="button" data-filter="software" 
+                    class="filter-btn px-4 py-2 text-xs font-semibold rounded-lg text-zinc-400 hover:text-zinc-200 transition-all border border-transparent" 
+                    aria-selected="false">
+              Software / Python
+            </button>
+            <button type="button" data-filter="3d" 
+                    class="filter-btn px-4 py-2 text-xs font-semibold rounded-lg text-zinc-400 hover:text-zinc-200 transition-all border border-transparent" 
+                    aria-selected="false">
+              3D & Blender
+            </button>
+          </div>
+        </div>
+
+        <!-- Grid de Proyectos -->
+        <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- ----------------------------------------------------------------
+               PROYECTO 1: PYTHON & BACKEND
+               ---------------------------------------------------------------- -->
+          <article class="project-card flex flex-col bg-zinc-900/60 rounded-2xl border border-zinc-800/80 overflow-hidden card-glow group"
+                   data-category="software">
+            
+            <!-- Contenedor de Imagen / Captura -->
+            <!-- EDITAR: Reemplaza este bloque o pon tu captura en src="..." -->
+            <div class="relative aspect-video w-full bg-zinc-950 border-b border-zinc-800/80 overflow-hidden flex items-center justify-center">
+              <!-- Placeholder visual elegante tipo mockup de código / consola -->
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-900/40 to-transparent z-10"></div>
+              
+              <!-- Simulación de interfaz de terminal/código -->
+              <div class="p-4 w-full h-full font-mono text-[11px] text-zinc-400 flex flex-col justify-center select-none bg-[#0d1117] transition-transform duration-500 group-hover:scale-105">
+                <div class="flex items-center gap-1.5 mb-3 opacity-60">
+                  <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                  <span class="ml-2 text-zinc-500 text-[10px]">api_service.py</span>
+                </div>
+                <p><span class="text-indigo-400">from</span> fastapi <span class="text-indigo-400">import</span> FastAPI, Depends</p>
+                <p><span class="text-indigo-400">app</span> = FastAPI(title=<span class="text-emerald-400">"Nexus Core"</span>)</p>
+                <p class="text-zinc-500 mt-1"># Automatización & endpoints async</p>
+                <p><span class="text-purple-400">@app.get</span>(<span class="text-emerald-400">"/api/v1/tasks"</span>)</p>
+                <p><span class="text-indigo-400">async def</span> <span class="text-blue-300">get_pipeline</span>(): ...</p>
+              </div>
+
+              <!-- Badge de categoría superior -->
+              <div class="absolute top-3 right-3 z-20">
+                <span class="px-2 py-1 text-[10px] font-mono font-medium rounded-md bg-zinc-900/90 text-indigo-300 border border-indigo-500/30 backdrop-blur-sm">
+                  Python / Backend
+                </span>
+              </div>
+            </div>
+
+            <!-- Contenido de la Card -->
+            <div class="p-6 flex flex-col flex-grow">
+              <!-- Tags de tecnologías -->
+              <div class="flex flex-wrap gap-1.5 mb-3">
+                <span class="px-2 py-0.5 text-xs font-mono text-zinc-300 bg-zinc-800/80 rounded border border-zinc-700/50">Python</span>
+                <span class="px-2 py-0.5 text-xs font-mono text-zinc-300 bg-zinc-800/80 rounded border border-zinc-700/50">FastAPI</span>
+                <span class="px-2 py-0.5 text-xs font-mono text-zinc-300 bg-zinc-800/80 rounded border border-zinc-700/50">SQLite</span>
+                <span class="px-2 py-0.5 text-xs font-mono text-zinc-300 bg-zinc-800/80 rounded border border-zinc-700/50">Docker</span>
+              </div>
+
+              <!-- Título -->
+              <h3 class="text-lg font-bold text-white group-hover:text-indigo-300 transition-colors mb-2">
+                Nexus API - Gestor de Tareas Asíncronas
+              </h3>
+
+              <!-- Descripción concisa de 2 líneas -->
+              <p class="text-zinc-400 text-xs sm:text-sm line-clamp-2 leading-relaxed mb-6 flex-grow">
+                API REST modular para orquestación de tareas en segundo plano con JWT, endpoints documentados y pruebas automatizadas con Pytest.
+              </p>
+
+              <!-- Botones de Acción -->
+              <div class="pt-4 border-t border-zinc-800/80 flex items-center gap-3">
+                <!-- EDITAR: Enlace al repositorio GitHub -->
+                <a href="https://github.com/tu-usuario/nexus-api" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 transition-colors">
+                  <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                  <span>Ver Código</span>
+                </a>
+
+                <!-- EDITAR: Enlace a la demo o documentación Swagger -->
+                <a href="https://tu-demo-nexus.com" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg text-indigo-400 hover:text-indigo-300 hover:bg-indigo-950/40 border border-indigo-900/50 transition-colors ml-auto">
+                  <span>Demo</span>
+                  <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+
+          </article>
+
+
+          <!-- ----------------------------------------------------------------
+               PROYECTO 2: JAVA & MULTIPLATAFORMA (DAM)
+               ---------------------------------------------------------------- -->
+          <article class="project-card flex flex-col bg-zinc-900/60 rounded-2xl border border-zinc-800/80 overflow-hidden card-glow group"
+                   data-category="software">
+            
+            <!-- Contenedor de Captura / Mockup -->
+            <!-- EDITAR: Reemplaza con tu screenshot (ej. ./assets/optistock.png) -->
+            <div class="relative aspect-video w-full bg-zinc-950 border-b border-zinc-800/80 overflow-hidden flex items-center justify-center">
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-900/40 to-transparent z-10"></div>
+              
+              <!-- Simulación de interfaz gráfica JavaFX / Desktop -->
+              <div class="p-4 w-full h-full bg-[#12131a] flex flex-col justify-between transition-transform duration-500 group-hover:scale-105 select-none">
+                <div class="flex items-center justify-between border-b border-zinc-800 pb-2">
+                  <div class="flex items-center gap-2">
+                    <i data-lucide="layout-grid" class="w-4 h-4 text-indigo-400"></i>
+                    <span class="text-[11px] font-mono text-zinc-300">OptiStock Desktop - JavaFX</span>
+                  </div>
+                  <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800/60">DB Conectada</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 my-auto">
+                  <div class="p-2 rounded bg-zinc-900/90 border border-zinc-800">
+                    <p class="text-[9px] text-zinc-500">Productos</p>
+                    <p class="text-xs font-mono font-bold text-white">1,420</p>
+                  </div>
+                  <div class="p-2 rounded bg-zinc-900/90 border border-zinc-800">
+                    <p class="text-[9px] text-zinc-500">Ventas Hoy</p>
+                    <p class="text-xs font-mono font-bold text-emerald-400">€ 3,840</p>
+                  </div>
+                  <div class="p-2 rounded bg-zinc-900/90 border border-zinc-800">
+                    <p class="text-[9px] text-zinc-500">Alertas Stock</p>
+                    <p class="text-xs font-mono font-bold text-amber-400">3 Ítems</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Badge de categoría -->
+              <div class="absolute top-3 right-3 z-20">
+                <span class="px-2 py-1 text-[10px] font-mono font-medium rounded-md bg-zinc-900/90 text-amber-300 border border-amber-500/30 backdrop-blur-sm">
+                  Java / DAM
+                </span>
+              </div>
+            </div>
+
+            <!-- Contenido de la Card -->
+            <div class="p-6 flex flex-col flex-grow">
+              <!-- Tags de tecnologías -->
+              <div class="flex flex-wrap gap-1.5 mb-3">
+                <span class="px-2 py-0.5 text-xs font-mono text-zinc-300 bg-zinc-800/80 rounded border border-zinc-700/50">Java 21</span>
+                <span class="px-2 py-0.5 text-xs font-mono text-zinc-300 bg-zinc-800/80 rounded border border-zinc-700/50">JavaFX</span>
+                <span class="px-2 py-0.5 text-xs font-mono text-zinc-300 bg-zinc-800/80 rounded border border-zinc-700/50">MySQL</span>
+                <span class="px-2 py-0.5 text-xs font-mono text-zinc-300 bg-zinc-800/80 rounded border border-zinc-700/50">Patrón MVC</span>
+              </div>
+
+              <!-- Título -->
+              <h3 class="text-lg font-bold text-white group-hover:text-indigo-300 transition-colors mb-2">
+                OptiStock - Sistema de Gestión de Inventario
+              </h3>
+
+              <!-- Descripción concisa de 2 líneas -->
+              <p class="text-zinc-400 text-xs sm:text-sm line-clamp-2 leading-relaxed mb-6 flex-grow">
+                Software de escritorio con arquitectura modular MVC, persistencia en base de datos relacional y generación de balances en PDF.
+              </p>
+
+              <!-- Botones de Acción -->
+              <div class="pt-4 border-t border-zinc-800/80 flex items-center gap-3">
+                <!-- EDITAR: Enlace al repositorio GitHub -->
+                <a href="https://github.com/tu-usuario/optistock-javafx" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 transition-colors">
+                  <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                  <span>Ver Código</span>
+                </a>
+
+                <!-- EDITAR: Enlace a Releases o Demo -->
+                <a href="https://github.com/tu-usuario/optistock-javafx/releases" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg text-indigo-400 hover:text-indigo-300 hover:bg-indigo-950/40 border border-indigo-900/50 transition-colors ml-auto">
+                  <span>Releases</span>
+                  <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+
+          </article>
+
+
+          <!-- ----------------------------------------------------------------
+               PROYECTO 3: 3D MODELING & BLENDER
+               ---------------------------------------------------------------- -->
+          <article class="project-card flex flex-col bg-zinc-900/60 rounded-2xl border border-zinc-800/80 overflow-hidden card-glow group"
+                   data-category="3d">
+            
+            <!-- Contenedor para render o video en bucle -->
+            <!-- EDITAR: Puedes colocar un <img src="assets/render-cyberpunk.jpg"> o <video autoplay loop muted playsinline src="..."> -->
+            <div class="relative aspect-video w-full bg-zinc-950 border-b border-zinc-800/80 overflow-hidden flex items-center justify-center">
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-900/30 to-transparent z-10"></div>
+              
+              <!-- Placeholder visual estilizado de render 3D / Blender -->
+              <div class="w-full h-full bg-gradient-to-br from-indigo-950 via-purple-950 to-zinc-950 flex flex-col items-center justify-center p-4 transition-transform duration-500 group-hover:scale-105">
+                <div class="w-14 h-14 rounded-2xl bg-zinc-900/80 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shadow-lg shadow-indigo-500/20 mb-2">
+                  <i data-lucide="box" class="w-7 h-7"></i>
+                </div>
+                <span class="text-[11px] font-mono text-zinc-400">Blender Cycles Render</span>
+                <span class="text-[10px] text-zinc-500 mt-0.5">Stylized PBR & Lighting</span>
+              </div>
+
+              <!-- Badge de categoría -->
+              <div class="absolute top-3 right-3 z-20">
+                <span class="px-2 py-1 text-[10px] font-mono font-medium rounded-md bg-zinc-900/90 text-cyan-300 border border-cyan-500/30 backdrop-blur-sm">
+                  3D & Blender
+                </span>
+              </div>
+            </div>
+
+            <!-- Contenido de la Card -->
+            <div class="p-6 flex flex-col flex-grow">
+              <!-- Tags de tecnologías -->
+              <div class="flex flex-wrap gap-1.5 mb-3">
+                <span class="px-2 py-0.5 text-xs font-mono text-zinc-300 bg-zinc-800/80 rounded border border-zinc-700/50">Blender 4.x</span>
+                <span class="px-2 py-0.5 text-xs font-mono text-zinc-300 bg-zinc-800/80 rounded border border-zinc-700/50">Cycles</span>
+                <span class="px-2 py-0.5 text-xs font-mono text-zinc-300 bg-zinc-800/80 rounded border border-zinc-700/50">Stylized PBR</span>
+                <span class="px-2 py-0.5 text-xs font-mono text-zinc-300 bg-zinc-800/80 rounded border border-zinc-700/50">Hard Surface</span>
+              </div>
+
+              <!-- Título -->
+              <h3 class="text-lg font-bold text-white group-hover:text-indigo-300 transition-colors mb-2">
+                Cyberpunk Alleyway - Entorno 3D Estilizado
+              </h3>
+
+              <!-- Descripción corta -->
+              <p class="text-zinc-400 text-xs sm:text-sm line-clamp-2 leading-relaxed mb-6 flex-grow">
+                Diorama tridimensional modular optimizado para tiempo real con shaders procedurales y composición volumétrica en Blender.
+              </p>
+
+              <!-- Botones de Acción -->
+              <div class="pt-4 border-t border-zinc-800/80 flex items-center justify-between">
+                <!-- Botón modal para ver render en alta resolución -->
+                <!-- EDITAR: data-img con la ruta a tu render HD (ej. assets/render-hd.png) -->
+                <button type="button" 
+                        data-open-modal 
+                        data-title="Cyberpunk Alleyway - Entorno 3D Estilizado"
+                        data-desc="Entorno de baja densidad poligonal con texturizado PBR estilizado, mapas de normales horneados y composición de iluminación volumétrica realizada en Blender Cycles."
+                        data-tags="Blender 4.x, Cycles, Stylized PBR, Geometry Nodes"
+                        data-img="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80"
+                        class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-indigo-600/90 hover:bg-indigo-600 text-white transition-all shadow-sm shadow-indigo-600/30">
+                  <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                  <span>Ver Render HD</span>
+                </button>
+
+                <!-- EDITAR: Enlace a tu ArtStation / Behance / Sketchfab -->
+                <a href="https://artstation.com/tu-usuario" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors">
+                  <span>ArtStation</span>
+                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         4. SECCIÓN "LAB & EJERCICIOS DE CLASE"
+         ==================================================================== -->
+    <section id="lab" class="py-20 border-t border-zinc-900 bg-zinc-950/50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-2xl mb-12">
+          <div class="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-emerald-400 uppercase tracking-widest mb-2">
+            <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+            <span>Academia & Práctica Continua</span>
+          </div>
+          <h2 class="text-3xl font-extrabold text-white tracking-tight">Lab & Ejercicios de Clase</h2>
+          <p class="text-zinc-400 text-sm mt-1">
+            Repositorios ordenados por materia y concepto: algoritmos, gestión de datos, concurrencia y desarrollo multiplataforma.
+          </p>
+        </div>
+
+        <!-- Grid Compacto de Ejercicios -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          <!-- Ejercicio 1: Algoritmos en Java -->
+          <!-- EDITAR: href con tu repo de ejercicios de Java -->
+          <a href="https://github.com/tu-usuario/algoritmos-java-dam" target="_blank" rel="noopener noreferrer" 
+             class="group p-5 rounded-xl bg-zinc-900/40 hover:bg-zinc-900/90 border border-zinc-800/80 hover:border-zinc-700 transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="p-2 rounded-lg bg-zinc-800/80 text-amber-400 group-hover:scale-105 transition-transform">
+                  <i data-lucide="binary" class="w-5 h-5"></i>
+                </span>
+                <span class="text-[11px] font-mono text-zinc-500 group-hover:text-indigo-400 transition-colors flex items-center gap-1">
+                  Ver Repo <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                </span>
+              </div>
+              <h3 class="text-base font-semibold text-zinc-200 group-hover:text-white transition-colors mb-1.5">
+                Algoritmos & POO en Java
+              </h3>
+              <p class="text-xs text-zinc-400 leading-relaxed mb-4">
+                Estructuras de datos (listas, árboles, grafos), complejidad Big O, patrones de diseño y manejo de excepciones en DAM.
+              </p>
+            </div>
+            <div class="flex items-center gap-2 pt-3 border-t border-zinc-800/50 text-[11px] font-mono text-zinc-500">
+              <span class="text-zinc-400 font-semibold">Java 17/21</span>
+              <span>•</span>
+              <span>45+ Prácticas</span>
+            </div>
+          </a>
+
+          <!-- Ejercicio 2: Bases de Datos & SQL -->
+          <!-- EDITAR: href con tu repo de SQL -->
+          <a href="https://github.com/tu-usuario/bbdd-sql-practicas" target="_blank" rel="noopener noreferrer" 
+             class="group p-5 rounded-xl bg-zinc-900/40 hover:bg-zinc-900/90 border border-zinc-800/80 hover:border-zinc-700 transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="p-2 rounded-lg bg-zinc-800/80 text-cyan-400 group-hover:scale-105 transition-transform">
+                  <i data-lucide="database" class="w-5 h-5"></i>
+                </span>
+                <span class="text-[11px] font-mono text-zinc-500 group-hover:text-indigo-400 transition-colors flex items-center gap-1">
+                  Ver Repo <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                </span>
+              </div>
+              <h3 class="text-base font-semibold text-zinc-200 group-hover:text-white transition-colors mb-1.5">
+                Bases de Datos & SQL Avanzado
+              </h3>
+              <p class="text-xs text-zinc-400 leading-relaxed mb-4">
+                Diseño relacional E/R, triggers, procedimientos almacenados, transacciones ACID y consultas complejas en MySQL & PostgreSQL.
+              </p>
+            </div>
+            <div class="flex items-center gap-2 pt-3 border-t border-zinc-800/50 text-[11px] font-mono text-zinc-500">
+              <span class="text-zinc-400 font-semibold">SQL / MySQL</span>
+              <span>•</span>
+              <span>30+ Queries & Scripts</span>
+            </div>
+          </a>
+
+          <!-- Ejercicio 3: Automatización en Python -->
+          <!-- EDITAR: href con tu repo de scripts en Python -->
+          <a href="https://github.com/tu-usuario/python-automation-scripts" target="_blank" rel="noopener noreferrer" 
+             class="group p-5 rounded-xl bg-zinc-900/40 hover:bg-zinc-900/90 border border-zinc-800/80 hover:border-zinc-700 transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="p-2 rounded-lg bg-zinc-800/80 text-emerald-400 group-hover:scale-105 transition-transform">
+                  <i data-lucide="cpu" class="w-5 h-5"></i>
+                </span>
+                <span class="text-[11px] font-mono text-zinc-500 group-hover:text-indigo-400 transition-colors flex items-center gap-1">
+                  Ver Repo <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                </span>
+              </div>
+              <h3 class="text-base font-semibold text-zinc-200 group-hover:text-white transition-colors mb-1.5">
+                Scripts de Automatización en Python
+              </h3>
+              <p class="text-xs text-zinc-400 leading-relaxed mb-4">
+                Web scraping con BeautifulSoup, procesamiento por lotes de archivos, parsers JSON/CSV y bots utilitarios de consola.
+              </p>
+            </div>
+            <div class="flex items-center gap-2 pt-3 border-t border-zinc-800/50 text-[11px] font-mono text-zinc-500">
+              <span class="text-zinc-400 font-semibold">Python 3.12</span>
+              <span>•</span>
+              <span>Scripts Utilitarios</span>
+            </div>
+          </a>
+
+          <!-- Ejercicio 4: Desarrollo de Interfaces (DAM) -->
+          <!-- EDITAR: href con tu repo de DI / Interfaces -->
+          <a href="https://github.com/tu-usuario/desarrollo-interfaces-dam" target="_blank" rel="noopener noreferrer" 
+             class="group p-5 rounded-xl bg-zinc-900/40 hover:bg-zinc-900/90 border border-zinc-800/80 hover:border-zinc-700 transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="p-2 rounded-lg bg-zinc-800/80 text-purple-400 group-hover:scale-105 transition-transform">
+                  <i data-lucide="app-window" class="w-5 h-5"></i>
+                </span>
+                <span class="text-[11px] font-mono text-zinc-500 group-hover:text-indigo-400 transition-colors flex items-center gap-1">
+                  Ver Repo <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                </span>
+              </div>
+              <h3 class="text-base font-semibold text-zinc-200 group-hover:text-white transition-colors mb-1.5">
+                Desarrollo de Interfaces (DI)
+              </h3>
+              <p class="text-xs text-zinc-400 leading-relaxed mb-4">
+                Creación de componentes personalizados en JavaFX, bindings reactivos, CSS aplicado a UI de escritorio y prototipado.
+              </p>
+            </div>
+            <div class="flex items-center gap-2 pt-3 border-t border-zinc-800/50 text-[11px] font-mono text-zinc-500">
+              <span class="text-zinc-400 font-semibold">JavaFX / SceneBuilder</span>
+              <span>•</span>
+              <span>Guías & Componentes</span>
+            </div>
+          </a>
+
+          <!-- Ejercicio 5: Programación de Servicios & Procesos (PSP) -->
+          <!-- EDITAR: href con tu repo de PSP -->
+          <a href="https://github.com/tu-usuario/psp-concurrencia-dam" target="_blank" rel="noopener noreferrer" 
+             class="group p-5 rounded-xl bg-zinc-900/40 hover:bg-zinc-900/90 border border-zinc-800/80 hover:border-zinc-700 transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="p-2 rounded-lg bg-zinc-800/80 text-blue-400 group-hover:scale-105 transition-transform">
+                  <i data-lucide="network" class="w-5 h-5"></i>
+                </span>
+                <span class="text-[11px] font-mono text-zinc-500 group-hover:text-indigo-400 transition-colors flex items-center gap-1">
+                  Ver Repo <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                </span>
+              </div>
+              <h3 class="text-base font-semibold text-zinc-200 group-hover:text-white transition-colors mb-1.5">
+                Servicios & Concurrencia (PSP)
+              </h3>
+              <p class="text-xs text-zinc-400 leading-relaxed mb-4">
+                Hilos (Threads), sincronización de semáforos, sockets TCP/UDP y comunicación cliente-servidor multihilo.
+              </p>
+            </div>
+            <div class="flex items-center gap-2 pt-3 border-t border-zinc-800/50 text-[11px] font-mono text-zinc-500">
+              <span class="text-zinc-400 font-semibold">Sockets & Multithreading</span>
+              <span>•</span>
+              <span>DAM 2º</span>
+            </div>
+          </a>
+
+          <!-- Ejercicio 6: Acceso a Datos & ORM -->
+          <!-- EDITAR: href con tu repo de Acceso a Datos -->
+          <a href="https://github.com/tu-usuario/acceso-datos-hibernate" target="_blank" rel="noopener noreferrer" 
+             class="group p-5 rounded-xl bg-zinc-900/40 hover:bg-zinc-900/90 border border-zinc-800/80 hover:border-zinc-700 transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="p-2 rounded-lg bg-zinc-800/80 text-rose-400 group-hover:scale-105 transition-transform">
+                  <i data-lucide="server" class="w-5 h-5"></i>
+                </span>
+                <span class="text-[11px] font-mono text-zinc-500 group-hover:text-indigo-400 transition-colors flex items-center gap-1">
+                  Ver Repo <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                </span>
+              </div>
+              <h3 class="text-base font-semibold text-zinc-200 group-hover:text-white transition-colors mb-1.5">
+                Acceso a Datos & ORM
+              </h3>
+              <p class="text-xs text-zinc-400 leading-relaxed mb-4">
+                Mapeo objeto-relacional con Hibernate/JPA, JDBC nativo, serialización de ficheros binarios y bases de datos NoSQL.
+              </p>
+            </div>
+            <div class="flex items-center gap-2 pt-3 border-t border-zinc-800/50 text-[11px] font-mono text-zinc-500">
+              <span class="text-zinc-400 font-semibold">Hibernate / JDBC</span>
+              <span>•</span>
+              <span>DAM 2º</span>
+            </div>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         5. STACK / HABILIDADES
+         ==================================================================== -->
+    <section id="stack" class="py-20 border-t border-zinc-900">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-2xl mb-12">
+          <div class="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-indigo-400 uppercase tracking-widest mb-2">
+            <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+            <span>Competencias Técnicas</span>
+          </div>
+          <h2 class="text-3xl font-extrabold text-white tracking-tight">Habilidades & Herramientas</h2>
+          <p class="text-zinc-400 text-sm mt-1">
+            Conjunto tecnológico agrupado por lenguajes troncales, entorno de desarrollo y software de modelado 3D.
+          </p>
+        </div>
+
+        <!-- 3 Grupos de Habilidades -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <!-- GRUPO 1: LENGUAJES -->
+          <div class="p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800/80">
+            <div class="flex items-center gap-2.5 mb-5 pb-3 border-b border-zinc-800">
+              <span class="p-2 rounded-lg bg-indigo-950/60 text-indigo-400 border border-indigo-900/50">
+                <i data-lucide="code-2" class="w-5 h-5"></i>
+              </span>
+              <h3 class="text-lg font-bold text-white">Lenguajes</h3>
+            </div>
+
+            <ul class="space-y-3.5">
+              <li class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/70 border border-zinc-800/60">
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                  <span class="text-sm font-medium text-zinc-200">Java</span>
+                </div>
+                <span class="text-xs font-mono text-zinc-500">POO, DAM, JavaFX</span>
+              </li>
+
+              <li class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/70 border border-zinc-800/60">
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                  <span class="text-sm font-medium text-zinc-200">Python</span>
+                </div>
+                <span class="text-xs font-mono text-zinc-500">FastAPI, Scripts</span>
+              </li>
+
+              <li class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/70 border border-zinc-800/60">
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                  <span class="text-sm font-medium text-zinc-200">SQL</span>
+                </div>
+                <span class="text-xs font-mono text-zinc-500">MySQL, PostgreSQL</span>
+              </li>
+
+              <li class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/70 border border-zinc-800/60">
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-violet-400"></span>
+                  <span class="text-sm font-medium text-zinc-200">Kotlin / JS</span>
+                </div>
+                <span class="text-xs font-mono text-zinc-500">Móvil & Frontend</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- GRUPO 2: HERRAMIENTAS & SISTEMAS -->
+          <div class="p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800/80">
+            <div class="flex items-center gap-2.5 mb-5 pb-3 border-b border-zinc-800">
+              <span class="p-2 rounded-lg bg-emerald-950/60 text-emerald-400 border border-emerald-900/50">
+                <i data-lucide="wrench" class="w-5 h-5"></i>
+              </span>
+              <h3 class="text-lg font-bold text-white">Herramientas</h3>
+            </div>
+
+            <ul class="space-y-3.5">
+              <li class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/70 border border-zinc-800/60">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="git-branch" class="w-4 h-4 text-orange-400"></i>
+                  <span class="text-sm font-medium text-zinc-200">Git & GitHub</span>
+                </div>
+                <span class="text-xs font-mono text-zinc-500">CI/CD, Workflows</span>
+              </li>
+
+              <li class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/70 border border-zinc-800/60">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="terminal-square" class="w-4 h-4 text-emerald-400"></i>
+                  <span class="text-sm font-medium text-zinc-200">Linux / Bash</span>
+                </div>
+                <span class="text-xs font-mono text-zinc-500">CLI & Entornos</span>
+              </li>
+
+              <li class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/70 border border-zinc-800/60">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="box" class="w-4 h-4 text-sky-400"></i>
+                  <span class="text-sm font-medium text-zinc-200">Docker</span>
+                </div>
+                <span class="text-xs font-mono text-zinc-500">Contenedores</span>
+              </li>
+
+              <li class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/70 border border-zinc-800/60">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="code" class="w-4 h-4 text-blue-400"></i>
+                  <span class="text-sm font-medium text-zinc-200">IntelliJ & VS Code</span>
+                </div>
+                <span class="text-xs font-mono text-zinc-500">IDEs Principales</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- GRUPO 3: CREATIVIDAD & 3D -->
+          <div class="p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800/80">
+            <div class="flex items-center gap-2.5 mb-5 pb-3 border-b border-zinc-800">
+              <span class="p-2 rounded-lg bg-orange-950/60 text-orange-400 border border-orange-900/50">
+                <i data-lucide="cuboid" class="w-5 h-5"></i>
+              </span>
+              <h3 class="text-lg font-bold text-white">Creatividad & 3D</h3>
+            </div>
+
+            <ul class="space-y-3.5">
+              <li class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/70 border border-zinc-800/60">
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                  <span class="text-sm font-medium text-zinc-200">Blender 4.x</span>
+                </div>
+                <span class="text-xs font-mono text-zinc-500">Modelado & UVs</span>
+              </li>
+
+              <li class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/70 border border-zinc-800/60">
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+                  <span class="text-sm font-medium text-zinc-200">Cycles & Eevee</span>
+                </div>
+                <span class="text-xs font-mono text-zinc-500">Iluminación / Render</span>
+              </li>
+
+              <li class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/70 border border-zinc-800/60">
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                  <span class="text-sm font-medium text-zinc-200">Stylized PBR</span>
+                </div>
+                <span class="text-xs font-mono text-zinc-500">Shaders & Texturas</span>
+              </li>
+
+              <li class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/70 border border-zinc-800/60">
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-pink-400"></span>
+                  <span class="text-sm font-medium text-zinc-200">Hard Surface</span>
+                </div>
+                <span class="text-xs font-mono text-zinc-500">Props & Entornos</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         6. CONTACTO & FOOTER
+         ==================================================================== -->
+    <section id="contacto" class="py-20 border-t border-zinc-900 bg-zinc-950">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        
+        <div class="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-indigo-400 uppercase tracking-widest mb-3">
+          <i data-lucide="send" class="w-3.5 h-3.5"></i>
+          <span>Hablemos</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+          ¿Tenés un proyecto en mente o una propuesta?
+        </h2>
+
+        <p class="text-zinc-400 text-sm sm:text-base max-w-xl mx-auto mb-10 leading-relaxed">
+          Estoy disponible para incorporarme a equipos de desarrollo multiplataforma, proyectos backend en Python o colaboraciones de modelado 3D.
+        </p>
+
+        <!-- Card de Contacto Rápido -->
+        <div class="p-6 sm:p-8 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 max-w-xl mx-auto mb-12 shadow-xl backdrop-blur-sm">
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            
+            <div class="text-left">
+              <p class="text-xs font-mono text-zinc-400 uppercase tracking-wider">Correo Electrónico</p>
+              <!-- EDITAR: Reemplaza con tu correo visible -->
+              <p class="text-base sm:text-lg font-semibold font-mono text-white mt-0.5">contacto@lautaro.dev</p>
+            </div>
+
+            <!-- Botones de Acción de Correo -->
+            <div class="flex items-center gap-2.5 w-full sm:w-auto">
+              <!-- Botón Copiar al portapapeles -->
+              <button id="copyEmailBtn" type="button" 
+                      class="relative flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold transition-all">
+                <i data-lucide="copy" class="w-4 h-4"></i>
+                <span>Copiar</span>
+                
+                <!-- Feedback flotante de copiado -->
+                <span id="copyFeedback" class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 text-[11px] font-mono rounded bg-emerald-600 text-white shadow-lg opacity-0 pointer-events-none transition-opacity duration-200 whitespace-nowrap">
+                  ¡Copiado!
+                </span>
+              </button>
+
+              <!-- Botón Enviar Mailto directo (EDITAR: Reemplaza mailto: con tu correo) -->
+              <a href="mailto:contacto@lautaro.dev" 
+                 class="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/30 transition-all">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+                <span>Escribir</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Redes Sociales y Perfiles Profesionales -->
+          <div class="mt-8 pt-6 border-t border-zinc-800/80 flex items-center justify-center gap-6">
+            
+            <!-- GitHub (EDITAR: Tu enlace) -->
+            <a href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer" 
+               class="flex items-center gap-2 text-xs font-medium text-zinc-400 hover:text-white transition-colors">
+              <i data-lucide="github" class="w-4 h-4"></i>
+              <span>GitHub</span>
+            </a>
+
+            <!-- LinkedIn (EDITAR: Tu enlace) -->
+            <a href="https://linkedin.com/in/tu-perfil" target="_blank" rel="noopener noreferrer" 
+               class="flex items-center gap-2 text-xs font-medium text-zinc-400 hover:text-white transition-colors">
+              <i data-lucide="linkedin" class="w-4 h-4"></i>
+              <span>LinkedIn</span>
+            </a>
+
+            <!-- ArtStation / 3D (EDITAR: Tu enlace) -->
+            <a href="https://artstation.com/tu-usuario" target="_blank" rel="noopener noreferrer" 
+               class="flex items-center gap-2 text-xs font-medium text-zinc-400 hover:text-white transition-colors">
+              <i data-lucide="box" class="w-4 h-4"></i>
+              <span>ArtStation</span>
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================
+       FOOTER
+       ==================================================================== -->
+  <footer class="border-t border-zinc-900 bg-zinc-950 py-8 text-xs text-zinc-500">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>
+        © <span id="currentYear">2026</span> Lautaro. Diseñado para rendimiento y simplicidad.
+      </p>
+      <div class="flex items-center gap-4">
+        <span>Construido con HTML5, Tailwind & Lucide</span>
+        <a href="#" class="p-1.5 rounded-lg hover:bg-zinc-900 hover:text-zinc-300 transition-colors" title="Volver arriba">
+          <i data-lucide="arrow-up" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ====================================================================
+       MODAL / LIGHTBOX PARA RENDERS 3D EN ALTA RESOLUCIÓN
+       ==================================================================== -->
+  <div id="renderModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200 hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <!-- Backdrop oscuro -->
+    <div id="modalBackdrop" class="fixed inset-0 bg-black/85 backdrop-blur-md"></div>
+
+    <!-- Contenido del Modal -->
+    <div id="modalCard" class="relative z-10 w-full max-w-4xl bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl transform scale-95 transition-transform duration-200 flex flex-col max-h-[90vh]">
+      
+      <!-- Barra superior con botón de cerrar -->
+      <div class="flex items-center justify-between px-6 py-4 border-b border-zinc-800 bg-zinc-950/70">
+        <div>
+          <h3 id="modalTitle" class="text-base font-bold text-white">Vista Previa 3D</h3>
+          <p id="modalDesc" class="text-xs text-zinc-400 mt-0.5 line-clamp-1"></p>
+        </div>
+        <button id="modalCloseBtn" type="button" aria-label="Cerrar modal" 
+                class="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 focus:outline-none transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Imagen / Render en HD -->
+      <div class="relative bg-zinc-950 flex items-center justify-center overflow-auto max-h-[60vh] p-2">
+        <img id="modalImage" src="" alt="Render 3D en alta resolución" class="max-w-full max-h-[58vh] object-contain rounded-lg shadow-md">
+      </div>
+
+      <!-- Barra inferior con tags -->
+      <div class="px-6 py-3.5 bg-zinc-950/90 border-t border-zinc-800 flex flex-wrap items-center justify-between gap-3">
+        <div id="modalTags" class="flex flex-wrap gap-2"></div>
+        <span class="text-[11px] font-mono text-zinc-500">Presiona <kbd class="px-1.5 py-0.5 bg-zinc-800 rounded border border-zinc-700 text-zinc-300">Esc</kbd> para cerrar</span>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Archivo de Lógica JavaScript -->
+  <script src="./js/main.js"></script>
+</body>
+</html>

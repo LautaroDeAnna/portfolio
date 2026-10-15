@@ -1,0 +1,74 @@
+/* ==========================================================================
+   ESTILOS PERSONALIZADOS & UTILIDADES
+   Portfolio de Lautaro - Desarrollador Multiplataforma & 3D Generalist
+   ========================================================================== */
+
+/* Suavizado de fuentes y comportamiento de scroll */
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+/* Personalización de la barra de desplazamiento (Scrollbar moderna) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Fondo con efecto sutil de malla radial (Glow ambiental oscuro) */
+.bg-radial-gradient {
+  background-image: 
+    radial-gradient(ellipse 70% 40% at 50% -10%, rgba(99, 102, 241, 0.12), transparent 70%),
+    radial-gradient(ellipse 50% 30% at 85% 20%, rgba(56, 189, 248, 0.07), transparent 60%),
+    radial-gradient(ellipse 40% 30% at 15% 60%, rgba(168, 85, 247, 0.05), transparent 50%);
+}
+
+/* Efecto de borde con brillo sutil (Card Glow en hover) */
+.card-glow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-glow:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Animaciones para filtrado de proyectos */
+.project-card {
+  transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.3s ease;
+}
+
+.project-card.hidden-card {
+  display: none !important;
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.project-card.visible-card {
+  display: flex !important;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Transiciones de apertura de Modal */
+#renderModal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#renderModal.show #modalCard {
+  transform: scale(1);
+}
